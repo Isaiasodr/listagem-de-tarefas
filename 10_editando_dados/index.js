@@ -24,6 +24,11 @@ app.use(
 app.use(express.json())
 
 app.use('/tasks', TaskRoutes)
+
+app.get('/',(req,res)=>{
+    res.render("tasks/all")
+})
+
 app.use(express.static('public'))
 
 
