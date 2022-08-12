@@ -9,6 +9,14 @@ const Task = require("./models/Task");
 
 const TaskRoutes = require("./routes/tasksroute");
 
+const port = process.env.PORT || 3000;
+
+const cls = require("cls-hooked");
+const namespace = cls.createNamespace("....");
+const Sequelize = require("sequelize");
+
+Sequelize.useCLS(namespace);
+
 app.engine("handlebars", exphbs.engine());
 
 app.set("view engine", "handlebars");
@@ -32,6 +40,6 @@ app.use(express.static("public"));
 conn
   .sync(/* { force: true } */)
   .then(() => {
-    app.listen(5000);
+    app.listen(port);
   })
   .catch((err) => console.log(err));
